@@ -1,5 +1,6 @@
 """Image processing helpers for creating meme images."""
 
+import random
 from pathlib import Path
 from typing import Union
 
@@ -40,12 +41,10 @@ class MemeEngine:
         text_bbox = draw.multiline_textbbox((0, 0), message, font=font)
         text_width = text_bbox[2] - text_bbox[0]
         text_height = text_bbox[3] - text_bbox[1]
-        x = 10
-        y = height - text_height - 10
-        if y < 0:
-            y = 10
-
         margin = 10
+        x = random.randint(10, max(10, width - text_width - margin))
+        y = random.randint(10, max(10, height - text_height - margin))
+
         background_box = [
             x - margin,
             y - margin,
