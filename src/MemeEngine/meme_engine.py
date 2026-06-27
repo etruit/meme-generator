@@ -14,9 +14,14 @@ class MemeEngine:
         self.output_dir = output_dir
 
     def make_meme(
-        self, img_path: Union[str, Path], text: str, author: str, width: int = 500
+        self,
+        img_path: Union[str, Path],
+        text: str,
+        author: str,
+        width: int = 500,
     ) -> str:
-        """Load an image, resize it, add quote text and author, then save it."""
+        """Load an image, resize it, add quote text and author,
+        then save it."""
         image = Image.open(img_path)
         ratio = width / float(image.width)
         height = int(image.height * ratio)
@@ -24,7 +29,10 @@ class MemeEngine:
 
         draw = ImageDraw.Draw(image)
         try:
-            font = ImageFont.truetype("arial.ttf", size=int(height / 15))
+            font = ImageFont.truetype(
+                "arial.ttf",
+                size=int(height / 15),
+            )
         except OSError:
             font = ImageFont.load_default()
 

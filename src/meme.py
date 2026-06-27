@@ -47,7 +47,9 @@ def generate_meme(path=None, body=None, author=None):
         quote = QuoteModel(body, author)
 
     meme_engine = MemeEngine("./tmp")
-    generated_path = meme_engine.make_meme(image_path, quote.body, quote.author)
+    generated_path = meme_engine.make_meme(
+        image_path, quote.body, quote.author
+    )
     return generated_path
 
 
@@ -56,7 +58,11 @@ if __name__ == "__main__":
         description="Generate a meme with an image and a quote"
     )
     parser.add_argument("--path", type=str, help="Path to an image file")
-    parser.add_argument("--body", type=str, help="Quote body to add to the image")
-    parser.add_argument("--author", type=str, help="Quote author to add to the image")
+    parser.add_argument(
+        "--body", type=str, help="Quote body to add to the image"
+    )
+    parser.add_argument(
+        "--author", type=str, help="Quote author to add to the image"
+    )
     args = parser.parse_args()
     print(generate_meme(args.path, args.body, args.author))

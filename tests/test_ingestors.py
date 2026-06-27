@@ -1,7 +1,7 @@
 """Tests for the QuoteEngine ingestors."""
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import pytest
 
@@ -10,8 +10,8 @@ SRC_DIR = ROOT_DIR / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.append(str(SRC_DIR))
 
-from QuoteEngine import Ingestor
-from QuoteEngine.quote_model import QuoteModel
+from QuoteEngine import Ingestor  # noqa: E402
+from QuoteEngine.quote_model import QuoteModel  # noqa: E402
 
 
 @pytest.mark.parametrize(

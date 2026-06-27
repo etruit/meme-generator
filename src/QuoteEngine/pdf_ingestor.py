@@ -37,7 +37,9 @@ class PdfIngestor(IngestorInterface):
         except FileNotFoundError:
             return quotes
         except subprocess.CalledProcessError as exc:
-            raise RuntimeError(f"Unable to extract PDF text: {exc.stderr}") from exc
+            raise RuntimeError(
+                f"Unable to extract PDF text: {exc.stderr}"
+            ) from exc
 
         for line in text.splitlines():
             line = line.strip()

@@ -32,11 +32,14 @@ class Ingestor(IngestorInterface):
     @classmethod
     def can_ingest(cls, path: str) -> bool:
         """Return True when any concrete ingestor supports the given path."""
-        return any(ingestor.can_ingest(path) for ingestor in cls._ingestors())
+        return any(
+            ingestor.can_ingest(path) for ingestor in cls._ingestors()
+        )
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse a quote file by selecting the appropriate ingestor strategy."""
+        """Parse a quote file by selecting the appropriate ingestor
+        strategy."""
         for ingestor in cls._ingestors():
             if ingestor.can_ingest(path):
                 return ingestor.parse(path)
@@ -45,13 +48,20 @@ class Ingestor(IngestorInterface):
     @staticmethod
     def _ingestors() -> List[Type[IngestorInterface]]:
         """Return the registered concrete ingestor classes."""
-        return [CsvIngestor, DocxIngestor, PdfIngestor, TxtIngestor]
+        return [
+            CsvIngestor,
+            DocxIngestor,
+            PdfIngestor,
+            TxtIngestor,
+        ]
 
 
 def main() -> None:
     """Run the ingestor from the command line."""
     parser = argparse.ArgumentParser(
-        description="Parse quote files using the appropriate ingestor strategy"
+        description=(
+            "Parse quote files using the appropriate ingestor strategy"
+        )
     )
     parser.add_argument(
         "path", help="Path to a .csv, .docx, .pdf, or .txt quote file"
