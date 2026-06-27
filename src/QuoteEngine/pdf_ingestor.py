@@ -1,6 +1,5 @@
 """PDF-based quote ingestion."""
 
-import os
 import re
 import subprocess
 from typing import List
@@ -17,11 +16,6 @@ class PdfIngestor(IngestorInterface):
     """Parse quotes from PDF files using Xpdf."""
 
     allowed_extensions = {".pdf"}
-
-    @classmethod
-    def can_ingest(cls, path: str) -> bool:
-        """Return True when the path points to a PDF file."""
-        return os.path.splitext(path)[1].lower() in cls.allowed_extensions
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

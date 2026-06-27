@@ -1,6 +1,5 @@
 """DOCX-based quote ingestion."""
 
-import os
 from typing import List
 
 import docx
@@ -17,11 +16,6 @@ class DocxIngestor(IngestorInterface):
     """Parse quotes from DOCX files."""
 
     allowed_extensions = {".docx"}
-
-    @classmethod
-    def can_ingest(cls, path: str) -> bool:
-        """Return True when the path points to a DOCX file."""
-        return os.path.splitext(path)[1].lower() in cls.allowed_extensions
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

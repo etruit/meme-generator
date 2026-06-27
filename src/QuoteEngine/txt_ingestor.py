@@ -1,6 +1,5 @@
 """Plain-text quote ingestion."""
 
-import os
 from typing import List
 
 try:
@@ -15,11 +14,6 @@ class TxtIngestor(IngestorInterface):
     """Parse quotes from plain-text files."""
 
     allowed_extensions = {".txt"}
-
-    @classmethod
-    def can_ingest(cls, path: str) -> bool:
-        """Return True when the path points to a text file."""
-        return os.path.splitext(path)[1].lower() in cls.allowed_extensions
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

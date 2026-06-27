@@ -1,6 +1,5 @@
 """CSV-based quote ingestion."""
 
-import os
 from typing import List
 
 import pandas as pd
@@ -17,11 +16,6 @@ class CsvIngestor(IngestorInterface):
     """Parse quotes from CSV files."""
 
     allowed_extensions = {".csv"}
-
-    @classmethod
-    def can_ingest(cls, path: str) -> bool:
-        """Return True when the path points to a CSV file."""
-        return os.path.splitext(path)[1].lower() in cls.allowed_extensions
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
